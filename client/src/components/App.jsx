@@ -17,6 +17,10 @@ class App extends Component {
     // http://localhost:3000/api/photos/1
     axios.get(`http://localhost:3001/api/photos/${id}`)
       .then((response) => {
+
+        console.log(response.data[0][0]);
+        console.log(response.data[1]);
+
         this.setState({
           description: response.data[0][0],
           photos: response.data[1]

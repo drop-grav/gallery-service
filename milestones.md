@@ -15,10 +15,10 @@
   - [X] Remove the original origin `git remote rm origin`
   - [X] Add your new repo as the remote `git remote add origin https://github.com/[your org]/[your repo]`
   - [X] Push the cloned repo to your organization. `git push origin master`
-  - [ ] Make an empty repo for your proxy server.
-    - [ ] Copy the FEC repo for the proxy of choice to this repo. (This way, multiple team members can use the same initial proxy code).
-- [ ] Every team member must configure Trello as their ticket management system, with a sprint-based setup.
-- [ ] File your first tickets in Trello as investigative/design tickets.
+  - [X] Make an empty repo for your proxy server.
+    - [X] Copy the FEC repo for the proxy of choice to this repo. (This way, multiple team members can use the same initial proxy code).
+- [X] Every team member must configure Trello as their ticket management system, with a sprint-based setup.
+- [X] File your first tickets in Trello as investigative/design tickets.
   - Don't do any work that isn't ticketed. Capture everything that you're doing, all your work, in the form of a Trello ticket.
 ## Phase 1: Scale the Database
 ### Support CRUD from your API

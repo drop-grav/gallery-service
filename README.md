@@ -38,21 +38,13 @@ npm install
 ```
 ## RESTful CRUD API Routes
 - Create / POST - create a new item
-app.post('/api/photos/:propertyId', (req, res) => {
-  res.send('Got a POST request');
-});
+- /api/photos/:propertyId'
 
 - Read / GET - read an item
-app.get('/api/photos/:propertyId', (req, res) => {
-  res.send('Hello World!');
-});
+- '/api/photos/:propertyId'
 
 - Update / PUT - update an item
-app.put('/api/photos/:propertyId', (req, res) => {
-  res.send('Got a PUT request at /api/photos/:propertyId');
-});
+- '/api/photos/:propertyId'
 
 - Delete / DELETE - delete an item
-app.delete('/api/photos/:propertyId', (req, res) => {
-  res.send('Got a DELETE request at /api/photos/:propertyId');
-});
+- '/api/photos/:propertyId'

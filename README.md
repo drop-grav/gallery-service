@@ -37,7 +37,7 @@ npm install -g webpack
 npm install
 ```
 ## RESTful CRUD API Routes
-- Create / POST - create a new item: /api/photos/:propertyId
+- Create / POST - create a new item: /api/photos/
 
 - Read / GET - read an item:         /api/photos/:propertyId
 

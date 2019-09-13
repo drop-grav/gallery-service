@@ -22,7 +22,7 @@ class Gallery extends Component {
   }
 
   static getDerivedStateFromProps(props, state){
-    if (props.photos !== state.photos){
+    if (props.photos !== state.photos) {
       return {
         photos: props.photos
       }
@@ -30,32 +30,32 @@ class Gallery extends Component {
   }
 
   save(){
-    console.log('save')
-    this.setState({toggleSave: !this.state.toggleSave})
+    console.log('save');
+    this.setState({toggleSave: !this.state.toggleSave});
   }
 
   share(){
-    console.log('share')
-    this.setState({toggleShare: !this.state.toggleShare})
+    console.log('share');
+    this.setState({toggleShare: !this.state.toggleShare});
   }
   viewPhotos(){
-    this.setState({toggleModal: !this.state.toggleModal})
+    this.setState({toggleModal: !this.state.toggleModal});
   }
 
   dimOtherImgs(e){
     const imgs = document.getElementsByClassName("photo");
-    for (let i = 0; i < imgs.length; i++){
-      if(imgs[i] !== e.target){
-        imgs[i].style.filter = 'brightness(75%)'
+    for (let i = 0; i < imgs.length; i++) {
+      if (imgs[i] !== e.target) {
+        imgs[i].style.filter = 'brightness(75%)';
       }
     }
   }
 
   undimOtherImgs(){
     const imgs = document.getElementsByClassName("photo");
-    for (let i = 0; i < imgs.length; i++){
-      if(imgs[i].style.filter = 'brightness(75%'){
-        imgs[i].style.filter = 'none'
+    for (let i = 0; i < imgs.length; i++) {
+      if (imgs[i].style.filter = 'brightness(75%') {//i think this should be '===' not '='
+        imgs[i].style.filter = 'none';
       }
     }
   }
@@ -63,13 +63,21 @@ class Gallery extends Component {
   render() {
     let body;
 
-    if(this.state.toggleModal) {
-      body = <Modal description={this.props.description} photos={this.props.photos} onClick={this.viewPhotos}/>
-    } else if ( this.state.toggleShare){
-      body = <Share/>
-    }  else {
-      body =
-          <div styleName='main-container'>
+    if (this.state.toggleModal) {
+      body = (
+        <div>
+          <Modal description={this.props.description} photos={this.props.photos} onClick={this.viewPhotos}/>
+        </div>
+      );
+    } else if (this.state.toggleShare) {
+      body = (
+        <div>
+          <Share/>
+        </div>
+      );
+    } else {
+      body = (
+        <div styleName='main-container'>
           <div styleName='photo-container'>
             <div  styleName="main-column">
               <div>
@@ -108,11 +116,12 @@ class Gallery extends Component {
             </div>
             <div styleName="view-photos">
               <button data-test="view-modal" id="view-photos" onClick={this.viewPhotos}>
-              View Photos
+                View Photos
               </button>
             </div>
           </div>
         </div>
+      )
     }
 
     return (

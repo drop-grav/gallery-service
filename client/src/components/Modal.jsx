@@ -7,7 +7,7 @@ class Modal extends Component {
     super(props);
     this.state = {
       currentPhotoId: 0,
-    }
+    };
     this.prevClick = this.prevClick.bind(this);
     this.nextClick = this.nextClick.bind(this);
     this.currentPhotoEffects = this.currentPhotoEffects.bind(this);
@@ -16,25 +16,25 @@ class Modal extends Component {
   }
 
   componentDidMount() {
-    this.currentPhotoEffects()
+    this.currentPhotoEffects();
   }
 
   removePrevCurrentPhotoEffects() {
-    document.getElementById(`${this.state.currentPhotoId}`).style.border = "none"
+    document.getElementById(`${this.state.currentPhotoId}`).style.border = "none";
   }
 
   currentPhotoEffects() {
     document.getElementById(`${this.state.currentPhotoId}`).style.border = "solid #484848 2px";
     // console.log(image)
     // transform if current card >=2 translate
-    const images = document.getElementsByClassName('image')
-    for (let i = 0; i < images.length; i++){
+    const images = document.getElementsByClassName('image');
+    for (let i = 0; i < images.length; i++) {
       // console.log(parseInt(images[i].id))
       if (parseInt(images[i].id) !== this.state.currentPhotoId) {
         images[i].style.opacity = '0.7';
       }
       if (parseInt(images[i].id) === this.state.currentPhotoId) {
-        images[i].style.opacity = '1'
+        images[i].style.opacity = '1';
       }
     }
   }

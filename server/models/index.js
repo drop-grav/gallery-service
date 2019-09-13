@@ -1,15 +1,15 @@
-var db = require('../db');
+const db = require('../db');
 
 module.exports = {
   propertyListing: {
-    get: function (id, callback){
-      db.query('SELECT * FROM propertyListings WHERE id = ?; SELECT * FROM photos WHERE propertyListing_id = ?', [id, id], function(err, results) {
+    get(id, callback) {
+      db.query('SELECT * FROM propertyListings WHERE id = ?; SELECT * FROM photos WHERE propertyListing_id = ?', [id, id], (err, results) => {
         if (err) {
-          console.log(err)
+          console.log(err);
         } else {
-          callback(results)
+          callback(results);
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};

@@ -1,20 +1,23 @@
-DROP DATABASE IF EXISTS gallerymodule;
+DROP DATABASE IF EXISTS "gallerymodule";
 
-CREATE DATABASE gallerymodule;
+CREATE DATABASE "gallerymodule";
 
-USE gallerymodule;
+\c "gallerymodule";
 
-CREATE TABLE photos (
-  id SERIAL PRIMARY KEY,
-  src VARCHAR(100) NOT NULL,
-  description VARCHAR(100) NOT NULL
+/*at least 5 photos per listing*/
+CREATE TABLE "photos" (
+  id            SERIAL PRIMARY KEY,
+  src           VARCHAR(100) NOT NULL,
+  description   VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE listings (
-  id SERIAL PRIMARY KEY,
-  FOREIGN KEY (photoID) REFERENCES photos (id)
+/*10 million listings*/
+CREATE TABLE "listings" (
+  id            SERIAL PRIMARY KEY,
+  FOREIGN KEY (photoID) REFERENCES "photos" (id)
 );
 
 /*  Execute this file from the command line by typing:
+ *    sudo service postgresql restart
  *    sudo -u postgres psql
 */

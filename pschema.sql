@@ -13,9 +13,15 @@ CREATE TABLE "photos" (
 
 /*10 million listings*/
 CREATE TABLE "listings" (
-  id            SERIAL PRIMARY KEY,
-  FOREIGN KEY (photoID) REFERENCES "photos" (id)
+  id            SERIAL PRIMARY KEY
 );
+
+ALTER TABLE "listings" ADD COLUMN "photoID" INTEGER;
+
+ALTER TABLE "listings"
+  ADD CONSTRAINT FNkey
+  FOREIGN KEY ("photoID")
+  REFERENCES "photos" (id);
 
 /*  Execute this file from the command line by typing:
  *    sudo service postgresql restart

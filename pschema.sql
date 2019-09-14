@@ -4,26 +4,20 @@ CREATE DATABASE "gallerymodule";
 
 \c "gallerymodule";
 
-/*at least 5 photos per listing*/
+/*10 million listings*/
+/*5-10 photos per listing*/
 CREATE TABLE "photos" (
   id            SERIAL PRIMARY KEY,
   src           VARCHAR(100) NOT NULL,
-  description   VARCHAR(100) NOT NULL
+  description   VARCHAR(100) NOT NULL,
+  listingID     INT NOT NULL
 );
-
-/*10 million listings*/
-CREATE TABLE "listings" (
-  id            SERIAL PRIMARY KEY
-);
-
-ALTER TABLE "listings" ADD COLUMN "photoID" INTEGER;
-
-ALTER TABLE "listings"
-  ADD CONSTRAINT FNkey
-  FOREIGN KEY ("photoID")
-  REFERENCES "photos" (id);
 
 /*  Execute this file from the command line by typing:
- *    sudo service postgresql restart
- *    sudo -u postgres psql
+ *    create database with:
+ *      psql -d postgres -a -f pschema.sql
+ *
+ *    log into postgres with:
+ *      sudo service postgresql restart
+ *      psql -h localhost -d gallerymodule -U student -W
 */

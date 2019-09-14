@@ -25,11 +25,8 @@ class Modal extends Component {
 
   currentPhotoEffects() {
     document.getElementById(`${this.state.currentPhotoId}`).style.border = "solid #484848 2px";
-    // console.log(image)
-    // transform if current card >=2 translate
     const images = document.getElementsByClassName('image');
     for (let i = 0; i < images.length; i++) {
-      // console.log(parseInt(images[i].id))
       if (parseInt(images[i].id) !== this.state.currentPhotoId) {
         images[i].style.opacity = '0.7';
       }

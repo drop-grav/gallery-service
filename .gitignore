@@ -24,3 +24,7 @@ coverage
 build/
 dist/
 
+client/data
+server/db/index.js
+server/db/seed.js
+server/schema.sql

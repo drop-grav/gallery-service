@@ -8,9 +8,15 @@ CREATE KEYSPACE gallerymodule
 
 USE gallerymodule;
 
-CREATE TABLE listings (
-  id SERIAL PRIMARY KEY,
-  src VARCHAR(100) NOT NULL,
-  description VARCHAR(100) NOT NULL,
+CREATE TABLE images (
+  id            UUID PRIMARY KEY,
+  src           VARCHAR(100) NOT NULL,
+  description   VARCHAR(100) NOT NULL,
   PRIMARY KEY (id, src, description)
 );
+
+listing id
+image id
+
+partition KEY
+location on disc

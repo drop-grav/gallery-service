@@ -54,7 +54,7 @@ class Gallery extends Component {
   undimOtherImgs(){
     const imgs = document.getElementsByClassName("photo");
     for (let i = 0; i < imgs.length; i++) {
-      if (imgs[i].style.filter = 'brightness(75%') {//i think this should be '===' not '='
+      if (imgs[i].style.filter = 'brightness(75%') {//I think this should be '===' not '='
         imgs[i].style.filter = 'none';
       }
     }

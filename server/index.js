@@ -1,42 +1,33 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const Promise = require('bluebird');
-const models = require('./models');
 
 const app = express();
-const port = 3001;
+const port = 3100;
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('./db');
+const dbpsql = require('./db/indexpsql.js');
+
+// const db = require('./db/index.js');
+// const Promise = require('bluebird');
+// const models = require('./models');
 
 app.use(cors());
-// app.use('/', express.static('public'));
 app.use('/listing/:id', express.static('public'));
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/', (req, res) => res.send('Hello World'));
-app.get('/api/photos/:propertyId', (req, res) => {
-  const id = req.params.propertyId;
-  const modelsPropertyListingGet = Promise.promisify(models.propertyListing.get);
-  modelsPropertyListingGet(id, (results) => res.json(results))
-    .catch((err) => console.log(err));
-});
-
-// put CRUD operations here
-// Create / POST - create a new item
-app.post('/api/photos/:propertyId', (req, res) => {
-  res.send('Got a POST request');
-});
-// Read / GET - read an item
-app.get('/api/photos/:propertyId', (req, res) => {
-  res.send('Hello World!');
-});
-// Update / PUT - update an item
-app.put('/api/photos/:propertyId', (req, res) => {
-  res.send('Got a PUT request at /api/photos/:propertyId');
-});
-// Delete / DELETE - delete an item
-app.delete('/api/photos/:propertyId', (req, res) => {
-  res.send('Got a DELETE request at /api/photos/:propertyId');
+app.get('/api/listing/:listingID', (req, res) => {
+  const { listingID } = req.params;
+  dbpsql.getListingPhotos(listingID, (error, data) => {
+    if (error) {
+      console.log('SERVER GET LISTING PHOTOS ERROR: ', error);
+      res.status(500).send(error);
+    } else {
+      console.log('SERVER GET LISTING PHOTOS SUCCESS');
+      res.status(200).send(data);
+    }
+  });
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}...`));

@@ -7,10 +7,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const dbpsql = require('./db/indexpsql.js');
 
-// const db = require('./db/index.js');
-// const Promise = require('bluebird');
-// const models = require('./models');
-
 app.use(cors());
 app.use('/listing/:id', express.static('public'));
 app.use(morgan('dev'));

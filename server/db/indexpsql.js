@@ -24,6 +24,36 @@ const getListingPhotos = function (listingID, callback) {
   });
 };
 
+// const postListingPhoto = function (listingID, callback) {
+//   pool.query(`SELECT * FROM photos WHERE listingID = ${listingID}`, (error, results, fields) => {
+//     if (error) {
+//       callback(error);
+//     } else {
+//       callback(null, results);
+//     }
+//   });
+// };
+
+// const getListingPhotos = function (listingID, callback) {
+//   pool.query(`SELECT * FROM photos WHERE listingID = ${listingID}`, (error, results, fields) => {
+//     if (error) {
+//       callback(error);
+//     } else {
+//       callback(null, results);
+//     }
+//   });
+// };
+
+// const getListingPhotos = function (listingID, callback) {
+//   pool.query(`SELECT * FROM photos WHERE listingID = ${listingID}`, (error, results, fields) => {
+//     if (error) {
+//       callback(error);
+//     } else {
+//       callback(null, results);
+//     }
+//   });
+// };
+
 module.exports = {
   pool,
   getListingPhotos,

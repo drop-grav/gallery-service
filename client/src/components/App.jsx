@@ -7,24 +7,27 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      description: {},
-      photos: [],
+      photos: [], //Is this an array of photo URLs?
+      // description: {}, //Is this just 1 description for the entire listing? Or does each photo have a description?
     }
   }
 
   componentDidMount(){
     const { id } = this.props.match.params;
-    // http://localhost:3000/api/photos/1
     axios.get(`http://localhost:3100/api/listing/${id}`)
       .then((response) => {
-
-        console.log(response.data[0][0]);
-        console.log(response.data[1]);
+        let listingData = response.data.rows;
+        console.log(listingData);
+        let listingSrc = listingData.map(photo => photo.src);
+        console.log(listingSrc);
+        let listingDescription = listingData.map(photo => photo.src);
+        console.log(listingDescription);
 
         this.setState({
-          description: response.data[0][0],
-          photos: response.data[1]
+          photos: listingSrc,
+          description: listingDescription,
         })
+        console.log(this.state)
       })
   }
 

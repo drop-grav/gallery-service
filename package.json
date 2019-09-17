@@ -10,6 +10,7 @@
   "scripts": {
     "react-dev": "webpack -d -p --watch",
     "server-dev": "nodemon ./server/index.js",
+    "write-csv": "node --max-old-space-size=8192 ./server/db/writecsv.js",
     "seed-db": "node ./server/seedpsql.js",
     "test": "jest --Coverage --cache",
     "lint": "./node_modules/.bin/eslint ./client"
@@ -19,6 +20,7 @@
     "bluebird": "^3.5.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "csv-writer": "^1.5.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "morgan": "^1.9.1",

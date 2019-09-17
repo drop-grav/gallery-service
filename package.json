@@ -10,6 +10,7 @@
   "scripts": {
     "react-dev": "webpack -d -p --watch",
     "server-dev": "nodemon ./server/index.js",
+    "write-csv": "node --max-old-space-size=8192 ./server/db/writecsv.js",
     "seed-db": "node ./server/seedpsql.js",
     "test": "jest --Coverage --cache",
     "lint": "./node_modules/.bin/eslint ./client"

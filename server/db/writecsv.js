@@ -1,49 +1,50 @@
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const faker = require('faker');
-
-const csvWriter = createCsvWriter({
-  path: './file.csv',
-  header: [
-    { id: 'src', title: 'SOURCE' },
-    { id: 'description', title: 'DESCRIPTION' },
-    { id: 'listingID', title: 'LISTING_ID' },
-  ],
-});
-
-const records = [];
-// { name: 'Bob', lang: 'French, English' },
-// { name: 'Mary', lang: 'English' }
+const fs = require('fs');
 
 const randomInt = function (max) {
-  let num = Math.ceil(Math.random() * max);
-  // all IDs start at 1 and not 0
-  if (num < 1) {
-    num = 1;
-  }
-  return num;
+  return Math.ceil(Math.random() * max);
 };
 
-// generate 100 listings
-for (let i = 0; i < 100; i++) {
-  // seed each listing with 5 photos
-  for (let j = 0; j < 5; j++) {
-    const entry = {
-      src: `https://bnbair.s3-us-west-1.amazonaws.com/${randomInt(100)}.jpg`,
-      description: `${faker.lorem.sentence()}`,
-      listingID: `${i}`,
-    };
-    records.push(entry);
+const hundredMil = 100000000;
+const tenMil = 10000000;
+
+const writeUsers = fs.createWriteStream('photo-data.csv');
+writeUsers.write('src,description,listingID\n', 'utf8');
+
+// generate 100 million data points
+// randomly assign listing one of the ten mil
+function writeHundredMillionUsers(writer, encoding, callback) {
+  let i = hundredMil;
+  let id = 0;
+  function write() {
+    let ok = true;
+    do {
+      i -= 1;
+      id += 1;
+      if (id % 10000 === 0) {
+        console.log(`Listing ${id} done`);
+      }
+      const src = `https://bnbair.s3-us-west-1.amazonaws.com/${randomInt(100)}.jpg`;
+      const description = `${faker.lorem.sentence()}`;
+      const listingID = `${randomInt(tenMil)}`;
+      const entry = `${src},${description},${listingID}\n`;
+      if (i === 0) {
+        writer.write(entry, encoding, callback);
+      } else {
+        // see if we should continue, or wait
+        // don't pass the callback, because we're not done yet.
+        ok = writer.write(entry, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      // had to stop early!
+      // write some more once it drains
+      writer.once('drain', write);
+    }
   }
-  console.log(`Listing ${i} done`);
+  write();
 }
 
-csvWriter.writeRecords(records) // returns a promise
-  .then(() => {
-    console.log('...Done');
-  });
-
-// This will produce a file path/to/file.csv with following contents:
-//
-//   NAME,LANGUAGE
-//   Bob,"French, English"
-//   Mary,English
+writeHundredMillionUsers(writeUsers, 'utf-8', () => {
+  writeUsers.end();
+});

@@ -8,7 +8,7 @@ const randomInt = function (max) {
 const hundredMil = 100000000;
 const tenMil = 10000000;
 
-const writeUsers = fs.createWriteStream('photo-data-psql.csv');
+const writeUsers = fs.createWriteStream('photo-data-cql.csv');
 writeUsers.write('src,description,listingID\n', 'utf8');
 
 // generate 100 million data points

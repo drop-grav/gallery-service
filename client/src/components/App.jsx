@@ -7,8 +7,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      photos: [], //Is this an array of photo URLs?
-      // description: {}, //Is this just 1 description for the entire listing? Or does each photo have a description?
+      photos: []
     }
   }
 
@@ -16,25 +15,19 @@ class App extends Component {
     const { id } = this.props.match.params;
     axios.get(`http://localhost:3100/api/listing/${id}`)
       .then((response) => {
-        let listingData = response.data.rows;
+        let listingData = response.data;
         console.log(listingData);
-        let listingSrc = listingData.map(photo => photo.src);
-        console.log(listingSrc);
-        let listingDescription = listingData.map(photo => photo.src);
-        console.log(listingDescription);
 
         this.setState({
-          photos: listingSrc,
-          description: listingDescription,
+          photos: listingData
         })
-        console.log(this.state)
       })
   }
 
   render() {
     return (
       <div>
-        <Gallery description={this.state.description} photos={this.state.photos}/>
+        <Gallery photos={this.state.photos}/>
       </div>
     )
   }

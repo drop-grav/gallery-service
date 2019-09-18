@@ -28,4 +28,5 @@ client/data
 server/db/index.js
 server/db/seed.js
 server/schema.sql
-photo-data.csv
+photo-data-psql.csv
+photo-data-cql.csv

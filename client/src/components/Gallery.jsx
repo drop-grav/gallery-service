@@ -66,7 +66,7 @@ class Gallery extends Component {
     if (this.state.toggleModal) {
       body = (
         <div>
-          <Modal description={this.props.description} photos={this.props.photos} onClick={this.viewPhotos}/>
+          <Modal photos={this.props.photos} onClick={this.viewPhotos}/>
         </div>
       );
     } else if (this.state.toggleShare) {

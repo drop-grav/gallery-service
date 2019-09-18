@@ -5,7 +5,8 @@ const port = 3100;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const dbpsql = require('./db/indexpsql.js');
+const dbpsql = require('./db/index-psql.js');
+// const dbcql = require('./db/index-cql.js');
 
 app.use(cors());
 app.use('/listing/:id', express.static('public'));
@@ -21,7 +22,7 @@ app.get('/api/listing/:listingID', (req, res) => {
       res.status(500).send(error);
     } else {
       console.log('SERVER GET LISTING PHOTOS SUCCESS');
-      res.status(200).send(data);
+      res.status(200).send(data.rows);
     }
   });
 });

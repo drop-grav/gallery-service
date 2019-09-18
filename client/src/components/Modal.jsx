@@ -53,7 +53,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { property_description } = this.props.description
+    const { property_description } = this.props.photos[0].description
     return (
       <div styleName="modal">
         <div styleName="portrait">

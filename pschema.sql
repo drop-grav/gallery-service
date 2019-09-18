@@ -4,8 +4,6 @@ CREATE DATABASE "gallerymodule";
 
 \c "gallerymodule";
 
-/*10 million listings*/
-/*5-10 photos per listing*/
 CREATE TABLE "photos" (
   id            SERIAL PRIMARY KEY,
   src           VARCHAR(100) NOT NULL,
@@ -14,7 +12,7 @@ CREATE TABLE "photos" (
 );
 
 COPY photos(src,description,listingID)
-FROM '/mnt/c/Users/ANTHONY/hrsf122/dropgrav-sdc/gallery-service/photo-data.csv' DELIMITER ',' CSV HEADER;
+FROM '/mnt/c/Users/ANTHONY/hrsf122/dropgrav-sdc/gallery-service/photo-data-psql.csv' DELIMITER ',' CSV HEADER;
 
 CREATE INDEX idx_name ON photos (listingID);
 

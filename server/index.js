@@ -27,4 +27,17 @@ app.get('/api/listing/:listingID', (req, res) => {
   });
 });
 
+app.post('/api/listing/:listingID', (req, res) => {
+  const { listingID } = req.params;
+  dbpsql.postListingPhotos(listingID, (error, data) => {
+    if (error) {
+      console.log('SERVER POST LISTING PHOTOS ERROR: ', error);
+      res.status(500).send(error);
+    } else {
+      console.log('SERVER POST LISTING PHOTOS SUCCESS');
+      res.status(200).send(data.rows);
+    }
+  });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}...`));

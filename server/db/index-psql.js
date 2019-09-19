@@ -62,4 +62,5 @@ const postListingPhotos = function (listingID, callback) {
 module.exports = {
   pool,
   getListingPhotos,
+  postListingPhotos,
 };

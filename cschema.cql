@@ -9,21 +9,18 @@ CREATE KEYSPACE "gallerymodule"
 USE "gallerymodule";
 
 CREATE TABLE "photos" (
+  listingID     INT,
   id            INT,
   src           TEXT,
   description   TEXT,
-  listingID     INT,
-  PRIMARY KEY (id, src, description, listingID)
+  PRIMARY KEY (listingID, id, src, description)
 );
 
--- COPY photos(src,description,listingID)
--- FROM '/mnt/c/Users/ANTHONY/hrsf122/dropgrav-sdc/gallery-service/photo-data.csv' DELIMITER ',' CSV HEADER;
-
--- CREATE INDEX idx_name ON photos (listingID);
+COPY photos(listingID,id,src,description) FROM '/mnt/c/Users/ANTHONY/hrsf122/dropgrav-sdc/gallery-service/photo-data-cql.csv' WITH HEADER = true;
 
 /*  Execute this file from the command line by typing:
  *    create database with:
- *      psql -d postgres -a -f pschema.sql
+ *      cqlsh -f cschema.cql
  *
  *    log into cassandra with:
  *      sudo service cassandra restart

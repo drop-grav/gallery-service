@@ -12,7 +12,8 @@
     "server-dev": "nodemon ./server/index.js",
     "write-csv-psql": "node --max-old-space-size=8192 ./server/db/write-csv-psql.js",
     "write-csv-cql": "node --max-old-space-size=8192 ./server/db/write-csv-cql.js",
-    "seed-db": "psql -d postgres -a -f pschema.sql",
+    "seed-db-psql": "psql -d postgres -a -f pschema.sql",
+    "seed-db-cql": "cqlsh -f cschema.cql",
     "test": "jest --Coverage --cache",
     "lint": "./node_modules/.bin/eslint ./client"
   },

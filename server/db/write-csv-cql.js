@@ -8,8 +8,8 @@ const randomInt = function (max) {
 const hundredMil = 100000000;
 const tenMil = 10000000;
 
-const writeUsers = fs.createWriteStream('photo-data-psql.csv');
-writeUsers.write('src,description,listingID\n', 'utf8');
+const writeUsers = fs.createWriteStream('photo-data-cql.csv');
+writeUsers.write('listingID,id,src,description\n', 'utf8');
 
 // generate 100 million data points
 // randomly assign listing one of the ten mil
@@ -27,7 +27,7 @@ function writeHundredMillionUsers(writer, encoding, callback) {
       const src = `https://bnbair.s3-us-west-1.amazonaws.com/${randomInt(100)}.jpg`;
       const description = `${faker.lorem.sentence()}`;
       const listingID = `${randomInt(tenMil)}`;
-      const entry = `${src},${description},${listingID}\n`;
+      const entry = `${listingID},${id},${src},${description}\n`;
       if (i === 0) {
         writer.write(entry, encoding, callback);
       } else {

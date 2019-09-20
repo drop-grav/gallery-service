@@ -4,6 +4,11 @@ CREATE DATABASE "gallerymodule";
 
 \c "gallerymodule";
 
+CREATE TABLE "listings" (
+  id            SERIAL PRIMARY KEY,
+  name          VARCHAR(100)
+);
+
 CREATE TABLE "photos" (
   id            SERIAL PRIMARY KEY,
   src           VARCHAR(100) NOT NULL,

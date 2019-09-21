@@ -55,8 +55,7 @@ app.delete('/api/listing/:listingID/photo/:photoID', (req, res) => {
 });
 
 app.put('/api/listing/:listingID/photo/:photoID', (req, res) => {
-  const { listingID } = req.params;
-  const { photoID } = req.params;
+  const { listingID, photoID } = req.params;
   dbpsql.putListingPhoto(listingID, photoID, (error, data) => {
     if (error) {
       console.log('SERVER UPDATE LISTING PHOTO ERROR: ', error);

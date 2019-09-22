@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 
 const app = express();
@@ -9,7 +10,8 @@ const dbpsql = require('./db/index-psql.js');
 // const dbcql = require('./db/index-cql.js');
 
 app.use(cors());
-app.use('/listing/:id', express.static('public'));
+// app.use('/listing/:id', express.static('public'));
+app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

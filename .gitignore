@@ -24,9 +24,8 @@ coverage
 build/
 dist/
 
-client/data
-server/db/index.js
-server/db/seed.js
-server/schema.sql
 photo-data-psql.csv
 photo-data-cql.csv
+newrelic.js
+newrelic_agent.log
+hello.yml

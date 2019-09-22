@@ -14,6 +14,7 @@
     "write-csv-cql": "node --max-old-space-size=8192 ./server/db/write-csv-cql.js",
     "seed-db-psql": "psql -d postgres -a -f pschema.sql",
     "seed-db-cql": "cqlsh -f cschema.cql",
+    "artillery": "artillery run hello.yml",
     "test": "jest --Coverage --cache",
     "lint": "./node_modules/.bin/eslint ./client"
   },
@@ -53,6 +54,7 @@
     "file-loader": "^4.2.0",
     "jest": "^24.9.0",
     "jest-css-modules": "^2.1.0",
+    "newrelic": "^5.11.0",
     "nodemon": "^1.19.2",
     "react-test-renderer": "^16.9.0",
     "style-loader": "^1.0.0",

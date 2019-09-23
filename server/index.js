@@ -6,9 +6,11 @@ const port = 3100;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const compression = require('compression');
 const dbpsql = require('./db/index-psql.js');
 // const dbcql = require('./db/index-cql.js');
 
+app.use(compression());
 app.use(cors());
 // app.use('/listing/:id', express.static('public'));
 app.use(express.static('public'));

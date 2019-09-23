@@ -12,7 +12,7 @@ const dbpsql = require('./db/index-psql.js');
 
 app.use(compression());
 app.use(cors());
-// app.use('/listing/:id', express.static('public'));
+// app.use('/listing/:id', express.static('public')); //uncomment when only using this service and not the proxy
 app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());

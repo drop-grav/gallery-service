@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 
 const app = express();
@@ -5,11 +6,14 @@ const port = 3100;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const compression = require('compression');
 const dbpsql = require('./db/index-psql.js');
 // const dbcql = require('./db/index-cql.js');
 
+app.use(compression());
 app.use(cors());
-app.use('/listing/:id', express.static('public'));
+// app.use('/listing/:id', express.static('public')); //uncomment when only using this service and not the proxy
+app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -55,8 +59,7 @@ app.delete('/api/listing/:listingID/photo/:photoID', (req, res) => {
 });
 
 app.put('/api/listing/:listingID/photo/:photoID', (req, res) => {
-  const { listingID } = req.params;
-  const { photoID } = req.params;
+  const { listingID, photoID } = req.params;
   dbpsql.putListingPhoto(listingID, photoID, (error, data) => {
     if (error) {
       console.log('SERVER UPDATE LISTING PHOTO ERROR: ', error);

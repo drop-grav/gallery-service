@@ -29,7 +29,7 @@
   - Delete / DELETE - delete an item
   - Be sure to select the appropriate routes for each of these actions so they conform to the REST standard.
 ### DBMS Selection and Data Generation
-- [ ] Select two DBMS technologies that were not used by you or by your inhereited service in FEC (preferably a RDBMS and a NoSQL DBMS)
+- [X] Select two DBMS technologies that were not used by you or by your inhereited service in FEC (preferably a RDBMS and a NoSQL DBMS)
   - Think carefully about the use-cases for your service and design a schema that is *realistic* for what your service is doing. It's likely that your service is the source of truth for certain information so be sure to represent your information in a way that accomplishes the goals of your use-cases.
   - Database options:
     - SQL: Postgres, MySQL, MariaDB
@@ -37,7 +37,7 @@
     - Graph: Neo4j (not applicable for all datasets)
     - OUT OF BOUNDS: in-memory databases, such as Redis
     - NOTE: ask your TM for permission before selecting a DBMS not on this list
-- [ ] Write a data generation script that can produce a minimum of 10M records and efficiently load this data into your service's DBMS. **Use your simulated dataset for ALL subsequent testing**.
+- [X] Write a data generation script that can produce a minimum of 10M records and efficiently load this data into your service's DBMS. **Use your simulated dataset for ALL subsequent testing**.
   - Ideally, data generation+loading should take no more than 1hr for 10M records. For many projects, the total time should be under 10 min.
   - Records should be representative of actual data. The use of libraries and tools like Faker, Lorem Ipsum (text) and Lorem Flickr (images) is recommended.
   - You must generate your own data -- using a downloaded dataset or scraping data from a website is **not permitted**.
@@ -48,7 +48,7 @@
     - **DO NOT SERVE YOUR MEDIA ASSETS FROM EXPRESS**. Instead, transfer your media assets to S3 and/or Cloudfront. Be sure the URLs in your database correctly refer to the location of your assets.
     - **DO NOT GENERATE 10M IMAGES**. Instead map the 10M URLs in your database to one of approx 1000 real images. Remember, stressing the database is your goal here, not generating 10M unique images.
 ### DBMS Benchmarking
-- [ ] Verify that all queries used by your API will run in under 50ms. To achieve this goal, you may need to do some performance tuning work on your DBMS.
+- [X] Verify that all queries used by your API will run in under 50ms. To achieve this goal, you may need to do some performance tuning work on your DBMS.
   - Confirm performance by running the queries used by your API either by:
     - Writing tests (using/modifying existing tests is ok)
     - Using the DB console to execute and time queries
@@ -57,13 +57,13 @@
     - Your queries should be the same queries you would use to support your API. Benchmarking a query that your service wouldn't use isn't helpful to determining performance.
     - Queries will be different depending on the technology in use.
     - 50ms is the upper limit. Most queries for this project should be optimizable to around 10ms or less. While most queries for this project can be optimized to execute in significantly less than 50ms, there may be very legitimate reasons why this goal might not be reachable in your circumstance.
-- [ ] Compare the performance of these two systems against each other and pick the one that performs best for *your* use-case.
-- [ ] Select one of your DBMS options for your final implementation
+- [X] Compare the performance of these two systems against each other and pick the one that performs best for *your* use-case.
+- [X] Select one of your DBMS options for your final implementation
   - Once you have made a final decision on DBMS:
     - Update your API server to use that Database
     - Verify your UI still works as expected
 ## Phase 2: Measure Initial Performance
-- [ ] Install New Relic on your service and proxy to report metrics about your servers' performance to the New Relic dashboard. At minimum, you must monitor response time (aka latency), throughput, and error rate -- these are the default metrics reported by New Relic. Other metrics may be useful to your specific application but are not required.
+- [X] Install New Relic on your service and proxy to report metrics about your servers' performance to the New Relic dashboard. At minimum, you must monitor response time (aka latency), throughput, and error rate -- these are the default metrics reported by New Relic. Other metrics may be useful to your specific application but are not required.
   - **Caution: New Relic has a 14-day free trial**. Do not start your New Relic trial in the first week of the project or you will run out of time! (If you run out of time, you can sign up for a 2nd account with a different email address.)
 - [ ] Stress-test Your Service:
   - [ ] Stress test your service in development (on your laptop), in isolation from other services, using the simulated data you created and realistic requests to your service's API by scaling the number of request per second: 1, 10, 100, 1K.

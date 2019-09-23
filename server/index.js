@@ -1,5 +1,6 @@
 require('newrelic');
 const express = require('express');
+const expressStaticGzip = require('express-static-gzip');
 
 const app = express();
 const port = 3100;
@@ -8,12 +9,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const compression = require('compression');
 const dbpsql = require('./db/index-psql.js');
-// const dbcql = require('./db/index-cql.js');
 
 app.use(compression());
 app.use(cors());
 // app.use('/listing/:id', express.static('public')); //uncomment when only using this service and not the proxy
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(expressStaticGzip('public', {
+  enableBrotli: true,
+  orderPreference: ['br', 'gz'],
+  setHeaders (res, path) {
+    res.setHeader("Cache-Control", "public, max-age=31536000");
+  },
+}));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

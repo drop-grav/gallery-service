@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "react-bundle": "webpack -d -p --watch --mode=production",
+    "react-bundle": "webpack -d -p --mode=production",
     "server": "nodemon ./server/index.js",
     "write-csv-psql": "node --max-old-space-size=8192 ./server/db/write-csv-psql.js",
     "write-csv-cql": "node --max-old-space-size=8192 ./server/db/write-csv-cql.js",

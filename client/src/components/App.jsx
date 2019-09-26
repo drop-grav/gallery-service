@@ -13,7 +13,7 @@ class App extends Component {
 
   componentDidMount(){
     const { id } = this.props.match.params;
-    axios.get(`/api/listing/${id}`)
+    axios.get(`/api/listing/${id}/photos`)
       .then((response) => {
         let listingData = response.data;
         this.setState({

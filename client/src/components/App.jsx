@@ -13,8 +13,7 @@ class App extends Component {
 
   componentDidMount(){
     const { id } = this.props.match.params;
-    // axios.get(`http://localhost:3100/api/listing/${id}`) //uncomment when only using this service and not the proxy
-    axios.get(`ec2-54-183-195-148.us-west-1.compute.amazonaws.com/api/listing/${id}`)
+    axios.get(`/api/listing/${id}`)
       .then((response) => {
         let listingData = response.data;
         this.setState({

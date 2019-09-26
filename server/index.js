@@ -13,12 +13,11 @@ const dbpsql = require('./db/index-psql.js');
 app.use(compression());
 app.use(cors());
 // app.use('/listing/:id', express.static('public')); //uncomment when only using this service and not the proxy
-// app.use(express.static('public'));
-app.use(expressStaticGzip('public', {
+app.use('/listing/:id', expressStaticGzip('public', { // add '/listing/:id' path when only using this service and not the proxy
   enableBrotli: true,
   orderPreference: ['br', 'gz'],
-  setHeaders (res, path) {
-    res.setHeader("Cache-Control", "public, max-age=31536000");
+  setHeaders(res, path) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
   },
 }));
 app.use(morgan('dev'));
@@ -29,10 +28,8 @@ app.get('/api/listing/:listingID', (req, res) => {
   const { listingID } = req.params;
   dbpsql.getListingPhotos(listingID, (error, data) => {
     if (error) {
-      console.log('SERVER GET LISTING PHOTOS ERROR: ', error);
       res.status(500).send(error);
     } else {
-      console.log('SERVER GET LISTING PHOTOS SUCCESS');
       res.status(200).send(data.rows);
     }
   });
@@ -42,10 +39,8 @@ app.post('/api/listing/:listingID', (req, res) => {
   const { listingID } = req.params;
   dbpsql.postListingPhoto(listingID, (error, data) => {
     if (error) {
-      console.log('SERVER POST LISTING PHOTO ERROR: ', error);
       res.status(500).send(error);
     } else {
-      console.log('SERVER POST LISTING PHOTO SUCCESS');
       res.status(200).send(`POST SUCCESSFUL TO LISTING ${listingID}`);
     }
   });
@@ -56,10 +51,8 @@ app.delete('/api/listing/:listingID/photo/:photoID', (req, res) => {
   const { photoID } = req.params;
   dbpsql.deleteListingPhoto(listingID, photoID, (error, data) => {
     if (error) {
-      console.log('SERVER DELETE LISTING PHOTO ERROR: ', error);
       res.status(500).send(error);
     } else {
-      console.log('SERVER DELETE LISTING PHOTO SUCCESS');
       res.status(200).send(`DELETE SUCCESSFUL TO LISTING ${listingID} ON PHOTO ${photoID}`);
     }
   });
@@ -69,10 +62,8 @@ app.put('/api/listing/:listingID/photo/:photoID', (req, res) => {
   const { listingID, photoID } = req.params;
   dbpsql.putListingPhoto(listingID, photoID, (error, data) => {
     if (error) {
-      console.log('SERVER UPDATE LISTING PHOTO ERROR: ', error);
       res.status(500).send(error);
     } else {
-      console.log('SERVER UPDATE LISTING PHOTO SUCCESS');
       res.status(200).send(`UPDATE SUCCESSFUL TO LISTING ${listingID} ON PHOTO ${photoID}`);
     }
   });

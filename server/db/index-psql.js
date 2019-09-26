@@ -2,17 +2,13 @@ const faker = require('faker');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  host: 'localhost',
+  host: 'ec2-52-53-234-204.us-west-1.compute.amazonaws.com',
   user: 'student',
   password: 'student',
   database: 'gallerymodule',
 });
 
 pool.connect();
-
-pool.query('SELECT $1::text as message', ['Hello world!'], (err, res) => {
-  console.log(err ? err.stack : res.rows[0].message);
-});
 
 const randomInt = function (max) {
   return Math.ceil(Math.random() * max);
@@ -49,7 +45,6 @@ const deleteListingPhoto = function (listingID, photoID, callback) {
 };
 
 const putListingPhoto = function (listingID, photoID, callback) {
-  console.log(listingID, photoID);
   pool.query(`UPDATE photos SET description = '${faker.lorem.sentence()}' WHERE listingID = ${listingID} AND id = ${photoID}`, (error, results, fields) => {
     if (error) {
       callback(error);

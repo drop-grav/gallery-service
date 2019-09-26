@@ -12,7 +12,7 @@ const dbpsql = require('./db/index-psql.js');
 
 app.use(compression());
 app.use(cors());
-app.use('/', express.static('loaderio-324bcb9ab723ca1db09dd3c7e72e6377.txt'));
+app.use('/', express.static('./loader/'));
 app.use('/listing/:id', expressStaticGzip('public', { // add '/listing/:id' path when only using this service and not the proxy
   enableBrotli: true,
   orderPreference: ['br', 'gz'],

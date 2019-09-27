@@ -24,7 +24,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/listing/:listingID', (req, res) => {
+app.get('/api/listing/:listingID/photos', (req, res) => {
   const { listingID } = req.params;
   dbpsql.getListingPhotos(listingID, (error, data) => {
     if (error) {
@@ -35,7 +35,7 @@ app.get('/api/listing/:listingID', (req, res) => {
   });
 });
 
-app.post('/api/listing/:listingID', (req, res) => {
+app.post('/api/listing/:listingID/photos', (req, res) => {
   const { listingID } = req.params;
   dbpsql.postListingPhoto(listingID, (error, data) => {
     if (error) {
@@ -46,7 +46,7 @@ app.post('/api/listing/:listingID', (req, res) => {
   });
 });
 
-app.delete('/api/listing/:listingID/photo/:photoID', (req, res) => {
+app.delete('/api/listing/:listingID/photos/:photoID', (req, res) => {
   const { listingID } = req.params;
   const { photoID } = req.params;
   dbpsql.deleteListingPhoto(listingID, photoID, (error, data) => {
@@ -58,7 +58,7 @@ app.delete('/api/listing/:listingID/photo/:photoID', (req, res) => {
   });
 });
 
-app.put('/api/listing/:listingID/photo/:photoID', (req, res) => {
+app.put('/api/listing/:listingID/photos/:photoID', (req, res) => {
   const { listingID, photoID } = req.params;
   dbpsql.putListingPhoto(listingID, photoID, (error, data) => {
     if (error) {
